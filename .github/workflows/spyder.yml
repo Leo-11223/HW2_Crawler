@@ -1,0 +1,26 @@
+name: Daily Bus Data Crawler
+
+on:
+  schedule:
+    - [cite_start]cron: '0 0 * * *' 
+  [cite_start]workflow_dispatch: 
+
+jobs:
+  run-spider:
+    [cite_start]runs-on: ubuntu-latest [cite: 4623]
+    steps:
+      - name: Checkout code
+        [cite_start]uses: actions/checkout@v4 [cite: 4631]
+      - name: Set up Python
+        [cite_start]uses: actions/setup-python@v4 [cite: 4636]
+        with:
+          [cite_start]python-version: '3.10' [cite: 4641]
+      - name: Install dependencies
+        [cite_start]run: pip install requests [cite: 4652]
+      - name: Run crawler
+        [cite_start]run: python api.py [cite: 4661]
+      - name: Upload result
+        [cite_start]uses: actions/upload-artifact@v4 [cite: 4673]
+        with:
+          name: spider-results
+          [cite_start]path: taoyuan_bus.json [cite: 4675]
