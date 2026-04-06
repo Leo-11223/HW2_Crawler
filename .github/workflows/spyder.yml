@@ -24,12 +24,13 @@ jobs:
 
       - name: Run crawler
         run: python api.py
-        
-      - name: Check file existence
-        run: ls -R  
+
+      - name: List files for debugging
+        run: ls -R
 
       - name: Upload result
         uses: actions/upload-artifact@v4
         with:
           name: spider-results
-          path: taoyuan_bus.json
+          path: "**/*.json"  # <--- 改成這行，它會搜尋所有資料夾下的 JSON 檔
+          if-no-files-found: error
