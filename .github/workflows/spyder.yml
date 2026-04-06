@@ -24,6 +24,9 @@ jobs:
 
       - name: Run crawler
         run: python api.py
+        
+      - name: Check file existence
+        run: ls -R  
 
       - name: Upload result
         uses: actions/upload-artifact@v4
